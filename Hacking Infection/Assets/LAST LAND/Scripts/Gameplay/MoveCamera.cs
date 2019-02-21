@@ -31,9 +31,20 @@ public class MoveCamera : MonoBehaviour {
 	public RectTransform AddThis;
 	public Text AddThisText;
 
+    // Joystick  //
+    // Joystick  //
+
+    public LeftJoystick leftJoystick; // the game object containing the LeftJoystick script
+    public RightJoystick rightJoystick; // the game object containing the RightJoystick script
 
 
-	public void Start(){
+    private Vector3 leftJoystickInput; // holds the input of the Left Joystick
+    private Vector3 rightJoystickInput; // hold the input of the Right Joystick
+
+    // Joystick  //
+    // Joystick  //
+
+    public void Start(){
 		SaveSpeed = SpeedOfPlayer;
 		HighOfStep = Step.transform.position.y;
 		tI_Player = i_Player.transform;
@@ -135,10 +146,17 @@ public class MoveCamera : MonoBehaviour {
 			}
 		}
 		i_PlayerSaved = tI_Player.position;
-	}
 
 
-	void SetSteps(){
+        // Joystick  //
+
+        JoystickMovement();
+ 
+        // Joystick  //
+    }
+
+
+    void SetSteps(){
 		GameObject NewStep = Instantiate (Step);
 		NewStep.SetActive (true);
 		NewStep.transform.parent = tI_Player;
@@ -154,4 +172,45 @@ public class MoveCamera : MonoBehaviour {
 			CurrentStep = 1;
 		}
 	}
+
+    // Joystick  //
+    // Joystick  //
+
+    void JoystickMovement()
+    {
+        // get input from both joysticks
+        leftJoystickInput = leftJoystick.GetInputDirection();
+        rightJoystickInput = rightJoystick.GetInputDirection();
+
+        float xMovementLeftJoystick = leftJoystickInput.x; // The horizontal movement from joystick 01
+        float zMovementLeftJoystick = leftJoystickInput.y; // The vertical movement from joystick 01	
+
+        float xMovementRightJoystick = rightJoystickInput.x; // The horizontal movement from joystick 02
+        float zMovementRightJoystick = rightJoystickInput.y; // The vertical movement from joystick 02
+
+
+        // if there is only input from the left joystick
+        if (leftJoystickInput != Vector3.zero && rightJoystickInput == Vector3.zero)
+        {
+
+            if (xMovementLeftJoystick > 0.1f)
+            {
+                RotateRight();
+            }
+            else if (xMovementLeftJoystick < 0.1f)
+            {
+                RotateLeft();
+            }
+            else
+            {
+                RotateEnd();
+            }
+            if (xMovementLeftJoystick == 0)
+            {
+                RotateEnd();
+            }
+
+        }
+
+    }
 }
