@@ -197,7 +197,7 @@ public class MoveCamera : MonoBehaviour {
             {
                 RotateRight();
             }
-            else if (xMovementLeftJoystick < 0.1f)
+            else if (xMovementLeftJoystick < -0.1f)
             {
                 RotateLeft();
             }
