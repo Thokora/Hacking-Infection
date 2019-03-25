@@ -1,16 +1,14 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponsControllerEnemie : MonoBehaviour
+public class WeaponsControllerEnmie1 : MonoBehaviour
 {
 
-
-    public GameObject shot;
+    public GameObject shotLaser;
     public Transform shotSpawn;
 
-    
+
 
     public float delay; //Timepo de espera para emepzar a disparar
     public float fireRate;  //Tiempo de espera volver a llamar el disparo Fire();
@@ -29,26 +27,26 @@ public class WeaponsControllerEnemie : MonoBehaviour
 
     void Start()
     {
-   
+
         InvokeRepeating("Fire", delay, fireRate); //InvokeRepeating lo que hace es generar esperas
-       
+
 
     }
 
-  
+
 
     // Update is called once per frame
     void Update()
     {
-   
+
     }
 
 
 
     void Fire()
     {
-        Instantiate(shot, shotSpawn.position, shotSpawn.rotation);//Instancia Lanza 
-      //Instantiate(shot, shotSpawn.position, shotSpawn.rotation = Quaternion.identity);
+        Instantiate(shotLaser, shotSpawn.position, shotSpawn.rotation);//Instancia rashoLaser
+        //Instantiate(shot, shotSpawn.position, shotSpawn.rotation = Quaternion.identity);
         audioSource.Play();
     }
 }
