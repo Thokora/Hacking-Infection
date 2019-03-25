@@ -7,9 +7,6 @@ public class MoveBulletShooter : MonoBehaviour
 
 
     public float speed;
-
-
-
     private Rigidbody rb;
 
 
@@ -23,9 +20,9 @@ public class MoveBulletShooter : MonoBehaviour
     void Update()
     {
 
-        rb.transform.rotation = Quaternion.Euler(0, 0, 90);
-      
+     //rb.transform.rotation = Quaternion.identity;
+
         rb.velocity = transform.forward * speed;
-       
+ 
     }
 }

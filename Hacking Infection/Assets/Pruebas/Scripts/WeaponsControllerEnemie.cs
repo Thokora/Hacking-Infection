@@ -10,6 +10,8 @@ public class WeaponsControllerEnemie : MonoBehaviour
     public GameObject shot;
     public Transform shotSpawn;
 
+    
+
     public float delay; //Timepo de espera para emepzar a disparar
     public float fireRate;  //Tiempo de espera volver a llamar el disparo Fire();
 
@@ -29,7 +31,8 @@ public class WeaponsControllerEnemie : MonoBehaviour
     {
    
         InvokeRepeating("Fire", delay, fireRate); //InvokeRepeating lo que hace es generar esperas
-     
+       
+
     }
 
   
@@ -37,15 +40,14 @@ public class WeaponsControllerEnemie : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
+     
     }
 
 
 
     void Fire()
     {
-       
-        Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
+        Instantiate(shot, shotSpawn.position, shotSpawn.rotation = Quaternion.identity);
         audioSource.Play();
     }
 }
