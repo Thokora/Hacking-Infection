@@ -23,7 +23,8 @@ public class MoveBulletShooter : MonoBehaviour
     void Update()
     {
 
-
+        rb.transform.rotation = Quaternion.Euler(0, 0, 90);
+      
         rb.velocity = transform.forward * speed;
        
     }

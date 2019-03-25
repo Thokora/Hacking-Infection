@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -26,19 +27,24 @@ public class WeaponsControllerEnemie : MonoBehaviour
 
     void Start()
     {
+   
         InvokeRepeating("Fire", delay, fireRate); //InvokeRepeating lo que hace es generar esperas
-        
+     
     }
+
+  
+
     // Update is called once per frame
     void Update()
     {
-        
+       
     }
 
 
 
     void Fire()
     {
+       
         Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
         audioSource.Play();
     }
