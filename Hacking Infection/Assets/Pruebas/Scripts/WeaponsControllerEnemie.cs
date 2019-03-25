@@ -47,7 +47,8 @@ public class WeaponsControllerEnemie : MonoBehaviour
 
     void Fire()
     {
-        Instantiate(shot, shotSpawn.position, shotSpawn.rotation = Quaternion.identity);
+        Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
+       // Instantiate(shot, shotSpawn.position, shotSpawn.rotation = Quaternion.identity);
         audioSource.Play();
     }
 }
