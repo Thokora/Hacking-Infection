@@ -20,7 +20,8 @@ public class MoveBulletShooter : MonoBehaviour
     void Update()
     {
 
-        //rb.transform.rotation = Quaternion.identity;
+     //rb.transform.rotation = Quaternion.identity;
+
         rb.velocity = transform.forward * speed;
  
     }
