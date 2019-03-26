@@ -28,7 +28,7 @@ public class MoveBulletShooter : MonoBehaviour
         }
         else
         {
-            //rb.velocity = transform.forward * speed;
+            rb.velocity = transform.forward * speed;
         }
 
     }
