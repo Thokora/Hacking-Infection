@@ -8,7 +8,7 @@ public class MoveBulletShooter : MonoBehaviour
 
     public float speed;
     private Rigidbody rb;
-
+    public string idEnemy = "";
 
     // Start is called before the first frame update
     void Start()
@@ -20,9 +20,16 @@ public class MoveBulletShooter : MonoBehaviour
     void Update()
     {
 
-     //rb.transform.rotation = Quaternion.identity;
+        //rb.transform.rotation = Quaternion.identity;
 
-        rb.velocity = transform.forward * speed;
- 
+        if (idEnemy == "Enemy2")
+        {
+            rb.velocity = transform.up * speed;
+        }
+        else
+        {
+            //rb.velocity = transform.forward * speed;
+        }
+
     }
 }
