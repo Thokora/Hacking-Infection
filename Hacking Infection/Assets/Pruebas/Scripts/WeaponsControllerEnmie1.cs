@@ -5,8 +5,10 @@ using UnityEngine;
 public class WeaponsControllerEnmie1 : MonoBehaviour
 {
 
-    public GameObject shotLaser;
-    public Transform shotSpawn;
+    public GameObject shotLaser; //Bala
+    public Transform shotSpawn; // PadreBala
+    public GameObject Player;
+
 
 
 
@@ -15,13 +17,16 @@ public class WeaponsControllerEnmie1 : MonoBehaviour
 
 
     private AudioSource audioSource;
+    private Rigidbody rb;
 
 
 
 
     void Awake()
     {
+        Player = GameObject.FindWithTag("Player");
         audioSource = GetComponent<AudioSource>();
+        rb = GetComponent<Rigidbody>();
     }
 
 
@@ -38,7 +43,7 @@ public class WeaponsControllerEnmie1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        transform.LookAt(Player.transform) ;
     }
 
 

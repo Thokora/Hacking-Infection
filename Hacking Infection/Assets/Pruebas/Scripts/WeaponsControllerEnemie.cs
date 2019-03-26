@@ -17,19 +17,21 @@ public class WeaponsControllerEnemie : MonoBehaviour
 
 
     private AudioSource audioSource;
-
+    public GameObject Player; 
 
 
 
     void Awake()
     {
+        Player = GameObject.FindWithTag("Player");
         audioSource = GetComponent<AudioSource>();
     }
 
 
     void Start()
     {
-   
+        
+
         InvokeRepeating("Fire", delay, fireRate); //InvokeRepeating lo que hace es generar esperas
        
 
@@ -40,7 +42,7 @@ public class WeaponsControllerEnemie : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-   
+        transform.LookAt(Player.transform);
     }
 
 
