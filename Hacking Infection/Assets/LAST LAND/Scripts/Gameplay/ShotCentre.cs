@@ -21,17 +21,24 @@ public class ShotCentre : MonoBehaviour {
 	private RaycastHit hit; // Create RayToSpace
 	private Vector3 DotOfShot; // Point where we must create explosion
 
-	public void Touch(){
+    public static bool esperar; //LINEA AGREGADA POR FAWER
+
+
+    public void Touch(){
 		if (AccessToTouch) {
 			Ray ray = GetComponent<Camera> ().ScreenPointToRay (Input.mousePosition);
 			if (Physics.Raycast (ray, out hit, MaxDistanceOfShot, ShotInputLayer)) {
 				DotOfShot = hit.point;
+
 				StartCoroutine ("CreateAll");
 			}
 		}
 	}
 
 	IEnumerator CreateAll () {
+
+        yield return new WaitUntil(() => esperar == true); //LINEA AGREGADA POR FAWER
+
 		AccessToTouch = false;
 		FutureExplosion = Instantiate (ExplosionInTouch);
 		FutureExplosion.transform.position = DotOfShot;
@@ -47,7 +54,8 @@ public class ShotCentre : MonoBehaviour {
 		while (Point == 0) {
 			if (LineBack.fillAmount < 1) {
 				LineBack.fillAmount += 0.02f;
-			} else {
+			} else 
+            {
 				if (LineBack.color.a > 0) {
 					LineBack.color = new Color (0, 0, 0, LineBack.color.a - 0.1f);
 					LineFon.color = new Color (0, 0, 0, LineFon.color.a - 0.05f);

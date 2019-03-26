@@ -31,6 +31,10 @@ public class MoveCamera : MonoBehaviour {
 	public RectTransform AddThis;
 	public Text AddThisText;
 
+    [Header("Fawer Changes")]
+    public GameObject ctrlPlayer;
+    Animator animCtrlPlayer;
+
     // Joystick  //
     // Joystick  //
 
@@ -48,17 +52,22 @@ public class MoveCamera : MonoBehaviour {
 		SaveSpeed = SpeedOfPlayer;
 		HighOfStep = Step.transform.position.y;
 		tI_Player = i_Player.transform;
+
+        animCtrlPlayer = ctrlPlayer.GetComponent<Animator>();
 	}
 
 	public void RotateRight(){
 		stayrotate = 2;
+        animCtrlPlayer.SetBool("Turn", true);
 	}
 	public void RotateLeft(){
 		stayrotate = -2;
-	}
+        animCtrlPlayer.SetBool("Turn", true);
+    }
 	public void RotateEnd(){
 		stayrotate = 0;
-	}
+        animCtrlPlayer.SetBool("Turn", false);
+    }
 
 
 	void FixedUpdate (){
@@ -150,8 +159,8 @@ public class MoveCamera : MonoBehaviour {
 
         // Joystick  //
 
-        JoystickMovement();
- 
+        JoystickMovement(); //LINEA AGREGADA POR FAWER
+
         // Joystick  //
     }
 
@@ -176,7 +185,7 @@ public class MoveCamera : MonoBehaviour {
     // Joystick  //
     // Joystick  //
 
-    void JoystickMovement()
+    void JoystickMovement() //FUNCIÓN AGREGADA POR FAWER
     {
         // get input from both joysticks
         leftJoystickInput = leftJoystick.GetInputDirection();
@@ -190,6 +199,7 @@ public class MoveCamera : MonoBehaviour {
 
 
         // if there is only input from the left joystick
+#if !UNITY_EDITOR
         if (leftJoystickInput != Vector3.zero && rightJoystickInput == Vector3.zero)
         {
 
@@ -201,16 +211,15 @@ public class MoveCamera : MonoBehaviour {
             {
                 RotateLeft();
             }
-            else
-            {
-                RotateEnd();
-            }
-            if (xMovementLeftJoystick == 0)
-            {
-                RotateEnd();
-            }
 
         }
+        else
+        {
+
+            RotateEnd();
+
+        }
+#endif
 
     }
 }
