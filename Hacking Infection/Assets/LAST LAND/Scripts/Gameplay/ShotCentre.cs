@@ -29,7 +29,7 @@ public class ShotCentre : MonoBehaviour {
 			Ray ray = GetComponent<Camera> ().ScreenPointToRay (Input.mousePosition);
 			if (Physics.Raycast (ray, out hit, MaxDistanceOfShot, ShotInputLayer)) {
 				DotOfShot = hit.point;
-
+                // Poner particulas y decirle desde los colliders de los enemigos, que vuelvan a esperar True
 				StartCoroutine ("CreateAll");
 			}
 		}
