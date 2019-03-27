@@ -21,6 +21,16 @@ public class ShotCentre : MonoBehaviour {
 	private RaycastHit hit; // Create RayToSpace
 	private Vector3 DotOfShot; // Point where we must create explosion
 
+    [Header("Fawer Changes")]
+    [SerializeField, Range(0, 20)]
+    float m_launchIntensity;
+
+    [SerializeField]
+    GameObject m_projectile;
+
+    [SerializeField]
+    GameObject Player;
+
     public static bool esperar; //LINEA AGREGADA POR FAWER
 
 
@@ -29,17 +39,31 @@ public class ShotCentre : MonoBehaviour {
 			Ray ray = GetComponent<Camera> ().ScreenPointToRay (Input.mousePosition);
 			if (Physics.Raycast (ray, out hit, MaxDistanceOfShot, ShotInputLayer)) {
 				DotOfShot = hit.point;
-                // Poner particulas y decirle desde los colliders de los enemigos, que vuelvan a esperar True
-				StartCoroutine ("CreateAll");
+
+                StartCoroutine("CreateAll");
 			}
 		}
 	}
 
-	IEnumerator CreateAll () {
+    public void Fire() //Funcion agregada por Fawer
+    {
+        GameObject newProjectile = Instantiate(m_projectile, Player.transform.position, Player.transform.rotation) as GameObject;
+
+        if (newProjectile.GetComponent<Rigidbody2D>())
+            newProjectile.GetComponent<Rigidbody2D>().AddForce(Player.transform.forward * m_launchIntensity, ForceMode2D.Impulse);
+        else if (newProjectile.GetComponent<Rigidbody>())
+            newProjectile.GetComponent<Rigidbody>().AddForce(Player.transform.forward * m_launchIntensity, ForceMode.Impulse);
+    }
+
+    IEnumerator CreateAll () {
+
+        Fire();
 
         yield return new WaitUntil(() => esperar == true); //LINEA AGREGADA POR FAWER
+        esperar = false;
 
-		AccessToTouch = false;
+
+        AccessToTouch = false;
 		FutureExplosion = Instantiate (ExplosionInTouch);
 		FutureExplosion.transform.position = DotOfShot;
 		FutureExplosion.transform.SetParent (ContainerForCreated);
