@@ -12,7 +12,17 @@ ModelImporter:
     2300000: Documento
     3300000: Documento
     4300000: Documento
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: phong1SG
+    second: {fileID: 2100000, guid: 50a17ef7ec72d5b488d3d331b8233019, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: phongE1SG
+    second: {fileID: 2100000, guid: 87c180c3d5eb362459d2326034fa4d4f, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

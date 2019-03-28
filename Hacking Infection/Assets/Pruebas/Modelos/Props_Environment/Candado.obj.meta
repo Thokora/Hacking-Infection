@@ -21,7 +21,37 @@ ModelImporter:
     3300002: pCylinder6
     4300000: pCylinder1
     4300002: pCylinder6
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert2SG
+    second: {fileID: 2100000, guid: 5e9b30b07ca4c1147a9150ed81dd830c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert3SG
+    second: {fileID: 2100000, guid: 602d787765c76fb47ab60de76567e23e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert4SG
+    second: {fileID: 2100000, guid: 1077b071b268b36418d28acbfef3c6d7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert5SG
+    second: {fileID: 2100000, guid: 4fa26d3456d292143b6b34ebbf3c69b5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert7SG
+    second: {fileID: 2100000, guid: 7cd13e0fdf7ab504d8d4d64f6e9f13a9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: phong1SG
+    second: {fileID: 2100000, guid: 6b8278768b1c5f44c87439e60c526e24, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
