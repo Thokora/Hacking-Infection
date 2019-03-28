@@ -154,7 +154,7 @@ public class MoveCamera : MonoBehaviour {
 		if (DistanceBSteps > MaxDistBS) {
 			DistanceBSteps = 0;
 			if (i_Player.GetComponent<ForPlayer> ().IsGameOver == 0) {
-				SetSteps ();
+				//SetSteps ();
 			}
 		}
 		i_PlayerSaved = tI_Player.position;
