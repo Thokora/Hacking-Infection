@@ -81,13 +81,19 @@ public class ForPlayer : MonoBehaviour
                     StartCoroutine(SuctionBehaviour());
                 }
             }
-            if (other.gameObject.tag == "GOisiObjects" || other.gameObject.tag == "CrystallsRed")
+            if (other.gameObject.tag == "GOisiObjects" || other.gameObject.tag == "CrystallsRed" || other.gameObject.tag == "Ennemy")
             {
                 CamSpeed *= 0.7f;
                 IsGameOver = 1;
 
                 StartCoroutine("ProcessOfGO");
             }
+        }
+        else
+        {
+            CamSpeed *= 0.7f;
+
+            StartCoroutine("ProcessOfGO");
         }
     }
 
