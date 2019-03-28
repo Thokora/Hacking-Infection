@@ -10,6 +10,9 @@ public class MoveBulletShooter : MonoBehaviour
     private Rigidbody rb;
     public string idEnemy = "";
 
+    public bool IsObstacule;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,4 +35,29 @@ public class MoveBulletShooter : MonoBehaviour
         }
 
     }
+
+
+    void OnCollisionEnter(Collision input)
+    {
+        if (input.gameObject.tag == "Player")
+        {
+            Destroy(input.gameObject);
+            ShotCentre.esperar = true;
+            StartCoroutine(MuerteEnemigo());
+            //m_animator.SetTrigger("Hit");
+        }
+
+    }
+
+
+    IEnumerator MuerteEnemigo()
+    {
+        yield return new WaitForSecondsRealtime(1.0f);
+        if (!IsObstacule)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+
 }

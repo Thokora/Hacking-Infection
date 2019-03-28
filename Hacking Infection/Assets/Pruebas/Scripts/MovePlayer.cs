@@ -6,9 +6,9 @@ public class MovePlayer : MonoBehaviour
 {
 
     public float velocidad;
-    private Rigidbody rb; 
+    private Rigidbody rb;
 
-    
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -18,4 +18,10 @@ public class MovePlayer : MonoBehaviour
     {
         transform.Translate(Input.GetAxis("Horizontal") * velocidad * Time.deltaTime, 0, Input.GetAxis("Vertical") * velocidad * Time.deltaTime);
     }
+
+
+   
+
+
+
 }
