@@ -4,21 +4,20 @@ using System.Collections.Generic;
 
 public class Ennemy : MonoBehaviour
 {
-	/*Animator m_animator;
 
+    public bool IsObstacule;
 
-	void Start()
-	{
-		m_animator = GetComponent<Animator>();
-	}
-    */
 	void OnCollisionEnter(Collision input)
 	{
-		Destroy(input.gameObject);
-        ShotCentre.esperar = true;
-        StartCoroutine(MuerteEnemigo());
-		//m_animator.SetTrigger("Hit");
-	}
+        if (input.gameObject.tag == "Bullet")
+        {
+            Destroy(input.gameObject);
+            ShotCentre.esperar = true;
+            StartCoroutine(MuerteEnemigo());
+            //m_animator.SetTrigger("Hit");
+        }
+
+    }
 
 	void OnCollisionEnter2D(Collision2D input)
 	{
@@ -29,7 +28,10 @@ public class Ennemy : MonoBehaviour
     IEnumerator MuerteEnemigo()
     {
         yield return new WaitForSecondsRealtime(1.0f);
-        Destroy(gameObject);
+        if (!IsObstacule)
+        {
+            Destroy(gameObject);
+        }
     }
 
 }
