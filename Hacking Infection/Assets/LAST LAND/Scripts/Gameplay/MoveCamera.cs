@@ -202,7 +202,7 @@ public class MoveCamera : MonoBehaviour {
 
 
         // if there is only input from the left joystick
-#if !UNITY_EDITOR
+
         if (leftJoystickInput != Vector3.zero && rightJoystickInput == Vector3.zero)
         {
 
@@ -222,7 +222,7 @@ public class MoveCamera : MonoBehaviour {
             RotateEnd();
 
         }
-#endif
+
 
     }
 }
