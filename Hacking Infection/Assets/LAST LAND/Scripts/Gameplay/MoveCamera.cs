@@ -58,15 +58,18 @@ public class MoveCamera : MonoBehaviour {
 
 	public void RotateRight(){
 		stayrotate = 2;
-        animCtrlPlayer.SetBool("Turn", true);
-	}
+        animCtrlPlayer.SetBool("TurnRight", true);
+        animCtrlPlayer.SetBool("TurnLeft", false);
+    }
 	public void RotateLeft(){
 		stayrotate = -2;
-        animCtrlPlayer.SetBool("Turn", true);
+        animCtrlPlayer.SetBool("TurnLeft", true);
+        animCtrlPlayer.SetBool("TurnRight", false);
     }
 	public void RotateEnd(){
 		stayrotate = 0;
-        animCtrlPlayer.SetBool("Turn", false);
+        animCtrlPlayer.SetBool("TurnRight", false);
+        animCtrlPlayer.SetBool("TurnLeft", false);
     }
 
 
