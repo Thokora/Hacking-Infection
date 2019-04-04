@@ -11,7 +11,7 @@ public class MoveBulletShooter : MonoBehaviour
     public string idEnemy = "";
 
     public bool IsObstacule;
-
+    //public static bool deathFlicker;
 
     // Start is called before the first frame update
     void Start()
@@ -41,6 +41,7 @@ public class MoveBulletShooter : MonoBehaviour
     {
         if (input.gameObject.tag == "Player")
         {
+            //deathFlicker = true;
             Destroy(input.gameObject);
             ShotCentre.esperar = true;
             StartCoroutine(MuerteEnemigo());

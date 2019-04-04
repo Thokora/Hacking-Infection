@@ -37,7 +37,19 @@ public class ForPlayer : MonoBehaviour
 
         PlayerRB = Player.GetComponent<Rigidbody>();
         antiSuctionButton.SetActive(false);
+        //StartCoroutine(FlickerIsDead());
     }
+    /*
+    IEnumerator FlickerIsDead()
+    {
+        Debug.Log("Aun no es true");
+        yield return new WaitUntil(() => MoveBulletShooter.deathFlicker == true);
+        Debug.Log("Ya es true");
+
+        CamSpeed *= 0.7f;
+
+        StartCoroutine("ProcessOfGO");
+    }*/
 
     IEnumerator ResetHigh()
     {
