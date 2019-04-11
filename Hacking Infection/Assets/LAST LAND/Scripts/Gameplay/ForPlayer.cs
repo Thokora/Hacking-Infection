@@ -22,11 +22,17 @@ public class ForPlayer : MonoBehaviour
     public float suctionForce;
 
     public GameObject antiSuctionButton;
+    Animator animPropulsores;
 
     Rigidbody PlayerRB;
     bool suction;
 
+    public GameObject flickerShield;
 
+    [SerializeField, Range(0.0f, 10.0f)]
+    public float ShieldTime;
+
+    public int counterObjects;
 
     void Start()
     {
@@ -36,7 +42,8 @@ public class ForPlayer : MonoBehaviour
         SaveHeight = sIsCamera.HeightOfCam;
 
         PlayerRB = Player.GetComponent<Rigidbody>();
-        antiSuctionButton.SetActive(false);
+        animPropulsores = antiSuctionButton.GetComponent<Animator>();
+        animPropulsores.SetBool("Propulsores", false);
         //StartCoroutine(FlickerIsDead());
     }
     /*
@@ -71,6 +78,22 @@ public class ForPlayer : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Collectible")
+        {
+            counterObjects++;
+            Destroy(other.gameObject);
+        }
+
+        if (other.gameObject.tag == "Bullet")
+        {
+            Destroy(other.gameObject);
+        }
+
+    }
+
+
     void OnTriggerStay(Collider other)
     {
         if (IsGameOver == 0)
@@ -79,8 +102,9 @@ public class ForPlayer : MonoBehaviour
             {
                 Fire.SetActive(true);
                 CamSpeed *= 1.3f;
+                
 
-                antiSuctionButton.SetActive(true);
+                animPropulsores.SetBool("Propulsores", true);
 
                 if (Player.transform.position.y < -0.5)
                 {
@@ -116,7 +140,8 @@ public class ForPlayer : MonoBehaviour
             if (other.gameObject.tag == "GOisDeep")
             {
 
-                antiSuctionButton.SetActive(false);
+                //anim
+                animPropulsores.SetBool("Propulsores", false);
 
                 if (Player.transform.position.y > -0.5)
                 {
@@ -159,6 +184,18 @@ public class ForPlayer : MonoBehaviour
             Player.transform.position = new Vector3(Player.transform.position.x, AntiSuction, Player.transform.position.z);
         }
     }
+
+    public void ButtonShield()
+    {
+        StartCoroutine(EsperarShield());
+    }
+    IEnumerator EsperarShield()
+    {
+        flickerShield.SetActive(true);
+        yield return new WaitForSecondsRealtime(ShieldTime);
+        flickerShield.SetActive(false);
+    }
+
 
     IEnumerator ProcessOfGO()
     {
