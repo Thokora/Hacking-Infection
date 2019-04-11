@@ -4,9 +4,20 @@ using UnityEngine;
 
 public class ExplotionEnemis : MonoBehaviour
 {
+
+    [Header("Aumento de fuerza, radio y objeto disparo")]
+    public GameObject Shooter;
     public float minForce;
     public float maxForce;
     public float radius;
+
+    [Header("Tiempo de destruccion")]
+    public float timeDelay;
+
+    public void Start()
+    {
+        Explode();
+    }
 
     public void Explode()
     {
@@ -19,6 +30,8 @@ public class ExplotionEnemis : MonoBehaviour
                 rb.AddExplosionForce(Random.Range(minForce, maxForce), transform.position, radius);
             }
 
+            Destroy(t.gameObject, timeDelay);   
+        
         }
     }
 }
