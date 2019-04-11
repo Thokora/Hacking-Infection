@@ -68,7 +68,22 @@ ModelImporter:
     4300018: pTorus4
     4300020: pTorus5
     4300022: pTorus6
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert3SG
+    second: {fileID: 2100000, guid: f946fad0751e3314a89f626029ea963f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert5SG
+    second: {fileID: 2100000, guid: 774e9b5c5ba85474ab3a3006f6d34bd0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pCube1SG
+    second: {fileID: 2100000, guid: 289911c29eafd69459f99052947bd2a4, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
