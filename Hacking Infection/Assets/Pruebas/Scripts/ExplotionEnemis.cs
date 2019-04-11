@@ -5,13 +5,13 @@ using UnityEngine;
 public class ExplotionEnemis : MonoBehaviour
 {
 
-    [Header("Aumento de fuerza, radio y objeto disparo")]
+    [Header("Aumento de fuerza, radio y objeto disparo") ]
     public GameObject Shooter;
     public float minForce;
     public float maxForce;
     public float radius;
 
-    [Header("Tiempo de destruccion")]
+    [Header("Tiempo de destruccion despues de morir")]
     public float timeDelay;
 
     public void Start()
