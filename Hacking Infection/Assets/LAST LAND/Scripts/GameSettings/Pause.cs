@@ -15,13 +15,24 @@ public class Pause : MonoBehaviour {
 	public Image LoadingIm;
 	public Text LoadingTe;
 
-	void Start () {
-		AudioListener.volume = 1;
-		ThisIndex = GameObject.Find ("Index").GetComponent<AudioSource> ();
-		TableOfPause = GameObject.Find ("Pause Panel").GetComponent<Image>();
-		PAUSE = GameObject.Find ("PAUSE").GetComponent<Text>();
-	}
+    public GameObject panelVideo;
 
+    private void Awake()
+    {
+        AudioListener.volume = 1;
+        ThisIndex = GameObject.Find("Index").GetComponent<AudioSource>();
+        TableOfPause = GameObject.Find("Pause Panel").GetComponent<Image>();
+        PAUSE = GameObject.Find("PAUSE").GetComponent<Text>();
+        TapToPause();
+        StartCoroutine(IniciarVideo());
+    }
+
+    IEnumerator IniciarVideo()
+    {
+        panelVideo.SetActive(true);
+        yield return new WaitForSecondsRealtime(18f);
+        TapToContunie();
+    }
 
 	public void TapToPause(){
 		if(PAUSE.color.a == 1){

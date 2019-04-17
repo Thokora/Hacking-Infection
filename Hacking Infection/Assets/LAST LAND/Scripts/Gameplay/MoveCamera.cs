@@ -74,8 +74,28 @@ public class MoveCamera : MonoBehaviour {
 
 
 	void FixedUpdate (){
-		
-		if (stayrotate == 0) {
+
+#if UNITY_STANDALONE
+
+        if (Input.GetAxis("Horizontal") != 0)
+        {
+            if (Input.GetKey(KeyCode.RightArrow))
+            {
+                RotateRight();
+            }
+
+            if (Input.GetKey(KeyCode.LeftArrow))
+            {
+                RotateLeft();
+            }
+        }else
+        {
+            RotateEnd();
+        }
+
+#endif
+
+        if (stayrotate == 0) {
 			if (currentAngle > 0.1f) {
 				stayrotate = 1;
 			}
@@ -137,17 +157,9 @@ public class MoveCamera : MonoBehaviour {
 			}
 		}
 
-
-
 		gameObject.transform.position = new Vector3 (tI_Player.position.x, HeightOfCam, tI_Player.position.z - DistCamZ);	
 	
-
-
-
 		tI_Player.Translate (0, 0, SpeedOfPlayer);
-
-
-
 
 		DistanceBSteps += Mathf.Abs (tI_Player.position.z - i_PlayerSaved.z);
 		DistanceBSteps += Mathf.Abs (tI_Player.position.x - i_PlayerSaved.x);
@@ -159,12 +171,13 @@ public class MoveCamera : MonoBehaviour {
 		}
 		i_PlayerSaved = tI_Player.position;
 
-
+#if UNITY_ANDROID
         // Joystick  //
 
         JoystickMovement(); //LINEA AGREGADA POR FAWER
 
         // Joystick  //
+#endif
     }
 
 
@@ -187,7 +200,7 @@ public class MoveCamera : MonoBehaviour {
 
     // Joystick  //
     // Joystick  //
-
+#if UNITY_ANDROID
     void JoystickMovement() //FUNCIÓN AGREGADA POR FAWER
     {
         // get input from both joysticks
@@ -225,4 +238,5 @@ public class MoveCamera : MonoBehaviour {
 
 
     }
+#endif
 }

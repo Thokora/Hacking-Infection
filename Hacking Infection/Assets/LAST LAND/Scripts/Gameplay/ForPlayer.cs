@@ -58,6 +58,22 @@ public class ForPlayer : MonoBehaviour
         StartCoroutine("ProcessOfGO");
     }*/
 
+#if UNITY_STANDALONE
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Z)) //Escudo
+        {
+            ButtonShield();
+        }
+        if (Input.GetKeyDown(KeyCode.X)) //Propulsores
+        {
+            ButtonSuction();
+        }
+
+    }
+
+#endif
     IEnumerator ResetHigh()
     {
         yield return new WaitForSecondsRealtime(0.1f);

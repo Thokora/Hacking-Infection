@@ -43,7 +43,19 @@ public class ShotCentre : MonoBehaviour {
                 StartCoroutine("CreateAll");
 			}
 		}
-	}
+    }
+
+#if UNITY_STANDALONE
+    private void Update()
+    {
+
+        if (Input.GetKeyDown(KeyCode.C)) //Disparar
+        {
+            StartCoroutine("CreateAll");
+        }
+
+    }
+#endif
 
     public void Fire() //Funcion agregada por Fawer
     {
@@ -56,9 +68,8 @@ public class ShotCentre : MonoBehaviour {
     }
 
     IEnumerator CreateAll () {
-
         Fire();
-
+        Debug.Log("entra");
         yield return new WaitUntil(() => esperar == true); //LINEA AGREGADA POR FAWER
         esperar = false;
 

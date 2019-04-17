@@ -5,57 +5,29 @@ using UnityEngine.Video;
 
 public class Cinematic : MonoBehaviour
 {
-
-
-    public VideoPlayer videoplayer;
-
-
-    int num = 1;
-
-    float tiempo = 0;
-    float tiempoMax = 6;
-
-
-
+    public GameObject video;
+    public GameObject panel;
+    public float videoTime = 18f;
+    VideoPlayer videoplayer;
+  
     private void Awake()
     {
-        videoplayer = GetComponent<VideoPlayer>();
-        Video();
+        videoplayer = video.GetComponent<VideoPlayer>();
+        StartCoroutine(Cambio());
+
     }
+    
+IEnumerator Cambio()
+{
+    videoplayer.Play();
+    yield return new WaitForSecondsRealtime(videoTime);
+    videoplayer.Stop();
+    Debug.Log("se pauso");
+        video.SetActive(false);
+        panel.SetActive(false);
+        Debug.Log("Desaparecio");
 
-    void Start()
-    {
-
-        
-    }
-
-    void Update()
-    {
-        
-    }
-
-    public void Video()
-    {
-
-        tiempo += Time.deltaTime;
-        Debug.Log(tiempo.ToString());
-
-        if (tiempo < tiempoMax)
-        {
-            videoplayer.Play();
-            num++;
-        }
-        if (num == tiempoMax)
-        {
-            videoplayer.Stop();
-            Debug.Log("Me pause");
-
-           
-        }
-
-        
 
     }
 
-   
 }
