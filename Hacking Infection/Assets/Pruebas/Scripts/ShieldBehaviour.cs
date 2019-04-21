@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class ShieldBehaviour : MonoBehaviour
 {
-    public GameObject flickerShield;
+    public GameObject ShieldMaster;
+    public bool BelongsToFlicker;
 
     [SerializeField, Range(0.0f, 10.0f)]
     public float ShieldTime;
@@ -16,18 +17,36 @@ public class ShieldBehaviour : MonoBehaviour
 
     IEnumerator EsperarShield()
     {
-        ForPlayer.Inmunidad = true;
-        yield return new WaitForSecondsRealtime(ShieldTime);
-        ForPlayer.Inmunidad = false;
-        flickerShield.SetActive(false);
+        if (BelongsToFlicker)
+        {
+            ForPlayer.Inmunidad = true;
+            yield return new WaitForSecondsRealtime(ShieldTime);
+            ForPlayer.Inmunidad = false;
+            ShieldMaster.SetActive(false);
+        }else //escudo del enemigo
+        {
+            yield return new WaitForSecondsRealtime(ShieldTime);
+            ShieldMaster.SetActive(false);
+        }
+            
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "BulletFromEnemy")
+        if (BelongsToFlicker)
         {
-            Destroy(other.gameObject);
+            if (other.gameObject.tag == "BulletFromEnemy")
+            {
+                Destroy(other.gameObject);
+            }
+        }else //escudo del enemigo
+        {
+            if (other.gameObject.tag == "Bullet")
+            {
+                Destroy(other.gameObject);
+            }
         }
+
     }
 
 

@@ -34,6 +34,9 @@ public class BoosBehaviour : MonoBehaviour
 
     Animator BossAnim;
 
+    [SerializeField]
+    public GameObject ShieldMaster;
+
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -41,6 +44,7 @@ public class BoosBehaviour : MonoBehaviour
 
         StartCoroutine(FireDerWait());
         StartCoroutine(FireIzqWait());
+        StartCoroutine(ShieldActived()); //escudo cada 7 segundos
     }
 
     private void Update()
@@ -168,6 +172,12 @@ public class BoosBehaviour : MonoBehaviour
         }
     }
 
+    IEnumerator ShieldActived()
+    {
+        ShieldMaster.SetActive(true);
+        yield return new WaitForSecondsRealtime(7f);
+        StartCoroutine(ShieldActived());
+    }
 
 
 }
