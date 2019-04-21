@@ -17,17 +17,14 @@ public class Cinematic : MonoBehaviour
 
     }
     
-IEnumerator Cambio()
-{
-    videoplayer.Play();
-    yield return new WaitForSecondsRealtime(videoTime);
-    videoplayer.Stop();
-    Debug.Log("se pauso");
-        video.SetActive(false);
+    IEnumerator Cambio()
+    {
+        videoplayer.Play();
+        yield return new WaitForSecondsRealtime(videoTime);
+        videoplayer.Stop();
+        //Debug.Log("se pauso");
+        //video.SetActive(false);
         panel.SetActive(false);
-        Debug.Log("Desaparecio");
-
-
+        //Debug.Log("Desaparecio");
     }
-
 }

@@ -4,18 +4,20 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class Pause : MonoBehaviour {
-	
-	private Image TableOfPause;
-	private Text PAUSE;
-	public string NameOfSMenu;
 
-	private AudioSource ThisIndex;
+    private Image TableOfPause;
+    private Text PAUSE;
+    public string NameOfSMenu;
 
-	[Header("Other Objects")]
-	public Image LoadingIm;
-	public Text LoadingTe;
+    private AudioSource ThisIndex;
+
+    [Header("Other Objects")]
+    public Image LoadingIm;
+    public Text LoadingTe;
 
     public GameObject panelVideo;
+    [SerializeField]
+    float DuracionVideo = 18f;
 
     private void Awake()
     {
@@ -30,11 +32,18 @@ public class Pause : MonoBehaviour {
     IEnumerator IniciarVideo()
     {
         panelVideo.SetActive(true);
-        yield return new WaitForSecondsRealtime(18f);
+        yield return new WaitForSecondsRealtime(DuracionVideo);
         TapToContunie();
     }
 
-	public void TapToPause(){
+
+    public void SkipVideo()
+    {
+        panelVideo.SetActive(false);
+        TapToContunie();
+    }
+
+    public void TapToPause(){
 		if(PAUSE.color.a == 1){
 		StartCoroutine ("ProcessToPause");
 		}
@@ -104,6 +113,7 @@ public class Pause : MonoBehaviour {
 	}
 
 	IEnumerator ProcessToReload(){
+
 		GameObject.Find("Yes Reset").GetComponent<Image> ().enabled = false;
 		GameObject.Find("No Reset").GetComponent<Image> ().enabled = false;
 		int Point = 0;

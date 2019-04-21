@@ -16,6 +16,10 @@ public class ForPlayer : MonoBehaviour
     public AudioClip ToGameOver;
 
     [Header("Fawer Changes")]
+
+    public static bool DieFlicker;
+    public static bool Inmunidad;
+
     public GameObject Player;
 
     [SerializeField, Range(0.0f, 0.1f)]
@@ -29,13 +33,13 @@ public class ForPlayer : MonoBehaviour
 
     public GameObject flickerShield;
 
-    [SerializeField, Range(0.0f, 10.0f)]
-    public float ShieldTime;
-
     public int counterObjects;
+
 
     void Start()
     {
+        DieFlicker = false;
+
         IsCamera = GameObject.Find("Main Camera");
         sIsCamera = IsCamera.GetComponent<MoveCamera>();
         CamSpeed = sIsCamera.SpeedOfPlayer;
@@ -44,19 +48,22 @@ public class ForPlayer : MonoBehaviour
         PlayerRB = Player.GetComponent<Rigidbody>();
         animPropulsores = antiSuctionButton.GetComponent<Animator>();
         animPropulsores.SetBool("Propulsores", false);
-        //StartCoroutine(FlickerIsDead());
+        flickerShield.SetActive(false);
+
+        StartCoroutine(FlickerIsDead());
     }
-    /*
+    
     IEnumerator FlickerIsDead()
     {
         Debug.Log("Aun no es true");
-        yield return new WaitUntil(() => MoveBulletShooter.deathFlicker == true);
+        yield return new WaitUntil(() => DieFlicker == true);
         Debug.Log("Ya es true");
 
         CamSpeed *= 0.7f;
+        IsGameOver = 1;
 
         StartCoroutine("ProcessOfGO");
-    }*/
+    }
 
 #if UNITY_STANDALONE
 
@@ -102,9 +109,15 @@ public class ForPlayer : MonoBehaviour
             Destroy(other.gameObject);
         }
 
-        if (other.gameObject.tag == "Bullet")
+        if (other.gameObject.tag == "BulletFromEnemy")
         {
-            Destroy(other.gameObject);
+
+            if (Inmunidad == false)
+            {
+                Debug.Log("Mato a flicker, pero se debe cambiar por bajar puntos"); //cambiar por bajar puntos de vida
+                DieFlicker = true;
+            }
+
         }
 
     }
@@ -124,8 +137,7 @@ public class ForPlayer : MonoBehaviour
 
                 if (Player.transform.position.y < -0.5)
                 {
-                    IsGameOver = 1;
-                    StartCoroutine("ProcessOfGO");
+                    DieFlicker = true;
                 }
                 else
                 {
@@ -133,12 +145,17 @@ public class ForPlayer : MonoBehaviour
                     StartCoroutine(SuctionBehaviour());
                 }
             }
-            if (other.gameObject.tag == "GOisiObjects" || other.gameObject.tag == "CrystallsRed" || other.gameObject.tag == "Ennemy")
+            if (other.gameObject.tag == "GOisiObjects" || other.gameObject.tag == "CrystallsRed") 
             {
-                CamSpeed *= 0.7f;
-                IsGameOver = 1;
+                DieFlicker = true;
+            }
 
-                StartCoroutine("ProcessOfGO");
+            if (other.gameObject.tag == "Ennemy") //esto es lo que hace que muera..si toca algo cone este tag
+            {
+                if (Inmunidad == false)
+                {
+                    DieFlicker = true;
+                }
             }
         }
         else
@@ -167,8 +184,7 @@ public class ForPlayer : MonoBehaviour
                 }
                 else
                 {
-                    IsGameOver = 1;
-                    StartCoroutine("ProcessOfGO");
+                    DieFlicker = true;
                 }
 
             }
@@ -203,15 +219,8 @@ public class ForPlayer : MonoBehaviour
 
     public void ButtonShield()
     {
-        StartCoroutine(EsperarShield());
-    }
-    IEnumerator EsperarShield()
-    {
         flickerShield.SetActive(true);
-        yield return new WaitForSecondsRealtime(ShieldTime);
-        flickerShield.SetActive(false);
     }
-
 
     IEnumerator ProcessOfGO()
     {
