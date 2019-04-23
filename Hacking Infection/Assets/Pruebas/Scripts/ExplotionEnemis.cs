@@ -16,7 +16,7 @@ public class ExplotionEnemis : MonoBehaviour
 
     public void Start()
     {
-        Explode();
+      //  Explode();
     }
 
     public void Explode()
