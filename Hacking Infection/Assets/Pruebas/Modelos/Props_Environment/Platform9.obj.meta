@@ -12,7 +12,17 @@ ModelImporter:
     2300000: pCube4
     3300000: pCube4
     4300000: pCube4
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert2SG
+    second: {fileID: 2100000, guid: 84209ec83097c6540a0314bfb211bfca, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert3SG
+    second: {fileID: 2100000, guid: 3b3706fa8f1797a46b4f3a1afd6673de, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
