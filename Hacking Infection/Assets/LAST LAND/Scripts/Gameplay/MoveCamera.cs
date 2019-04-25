@@ -75,7 +75,7 @@ public class MoveCamera : MonoBehaviour {
 
 	void FixedUpdate (){
 
-#if UNITY_STANDALONE
+//#if UNITY_STANDALONE
 
         if (Input.GetAxis("Horizontal") != 0)
         {
@@ -93,7 +93,7 @@ public class MoveCamera : MonoBehaviour {
             RotateEnd();
         }
 
-#endif
+//#endif
 
         if (stayrotate == 0) {
 			if (currentAngle > 0.1f) {
