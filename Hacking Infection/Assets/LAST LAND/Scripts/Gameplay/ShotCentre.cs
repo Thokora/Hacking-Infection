@@ -45,17 +45,22 @@ public class ShotCentre : MonoBehaviour {
 		}
     }
 
-#if UNITY_STANDALONE
+//#if UNITY_STANDALONE
     private void Update()
     {
 
         if (Input.GetKeyDown(KeyCode.C)) //Disparar
         {
-            StartCoroutine("CreateAll");
+            ButtonDisparar();
         }
 
     }
-#endif
+    //#endif
+
+    public void ButtonDisparar()
+    {
+        StartCoroutine("CreateAll");
+    }
 
     public void Fire() //Funcion agregada por Fawer
     {

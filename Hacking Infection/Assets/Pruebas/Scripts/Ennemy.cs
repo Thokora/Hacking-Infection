@@ -13,17 +13,16 @@ public class Ennemy : MonoBehaviour
 	{
         if (input.gameObject.tag == "Bullet")
         {
-            
-            explotionEnemis.Explode();
-            Destroy(input.gameObject);
+
             ShotCentre.esperar = true;
+            Destroy(input.gameObject);
             StartCoroutine(MuerteEnemigo());
             //m_animator.SetTrigger("Hit");
         }
 
     }
 
-	void OnCollisionEnter2D(Collision2D input)
+	void OnCollisionEnter(Collision2D input)
 	{
 		Destroy(input.gameObject);
 		//m_animator.SetTrigger("Hit");
@@ -34,6 +33,7 @@ public class Ennemy : MonoBehaviour
         yield return new WaitForSecondsRealtime(1.0f);
         if (!IsObstacule)
         {
+            explotionEnemis.Explode();
             Destroy(gameObject);
         }
     }

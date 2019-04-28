@@ -25,6 +25,9 @@ public class ForPlayer : MonoBehaviour
     [SerializeField, Range(0.0f, 0.1f)]
     public float suctionForce;
 
+    [SerializeField, Range(0.0f, 1f)]
+    public float AntiSuctionValue;
+
     public GameObject antiSuctionButton;
     Animator animPropulsores;
 
@@ -65,7 +68,7 @@ public class ForPlayer : MonoBehaviour
         StartCoroutine("ProcessOfGO");
     }
 
-#if UNITY_STANDALONE
+//#if UNITY_STANDALONE
 
     void Update()
     {
@@ -80,7 +83,7 @@ public class ForPlayer : MonoBehaviour
 
     }
 
-#endif
+//#endif
     IEnumerator ResetHigh()
     {
         yield return new WaitForSecondsRealtime(0.1f);
@@ -212,7 +215,7 @@ public class ForPlayer : MonoBehaviour
 
         if (Player.transform.position.y > -0.5 && Player.transform.position.y < 2.0f)
         {
-            AntiSuction += 0.1f;
+            AntiSuction += AntiSuctionValue;
             Player.transform.position = new Vector3(Player.transform.position.x, AntiSuction, Player.transform.position.z);
         }
     }
