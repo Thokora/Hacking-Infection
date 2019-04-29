@@ -6,6 +6,7 @@ public class WeaponsControllerEnmie1 : MonoBehaviour
 {
 
     public GameObject shotLaser; //Bala
+    private GameObject cloneLaser;
     public Transform shotSpawn; // PadreBala
     public GameObject Player;
 
@@ -50,8 +51,9 @@ public class WeaponsControllerEnmie1 : MonoBehaviour
 
     void Fire()
     {
-        Instantiate(shotLaser, shotSpawn.position, shotSpawn.rotation);//Instancia rashoLaser
+       cloneLaser =  Instantiate(shotLaser, shotSpawn.position, shotSpawn.rotation);//Instancia rashoLaser
         //Instantiate(shot, shotSpawn.position, shotSpawn.rotation = Quaternion.identity);
         audioSource.Play();
+        Destroy(cloneLaser, 3);
     }
 }

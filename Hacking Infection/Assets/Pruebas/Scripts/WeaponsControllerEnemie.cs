@@ -8,6 +8,7 @@ public class WeaponsControllerEnemie : MonoBehaviour
 
 
     public GameObject shot;
+    private GameObject cloneShot;
     public Transform shotSpawn;
 
     
@@ -49,8 +50,9 @@ public class WeaponsControllerEnemie : MonoBehaviour
 
     void Fire()
     {
-        Instantiate(shot, shotSpawn.position, shotSpawn.rotation);//Instancia Lanza 
+       cloneShot = Instantiate(shot, shotSpawn.position, shotSpawn.rotation);//Instancia Lanza 
       //Instantiate(shot, shotSpawn.position, shotSpawn.rotation = Quaternion.identity);
         audioSource.Play();
+        Destroy(cloneShot, 3);
     }
 }
