@@ -29,16 +29,25 @@ public class WeaponsControllerEnemie : MonoBehaviour
     }
 
 
-    void Start()
-    {
+void Start()
+ {
         
-
-        InvokeRepeating("Fire", delay, fireRate); //InvokeRepeating lo que hace es generar esperas
+     
+   InvokeRepeating("Fire", delay, fireRate); //InvokeRepeating lo que hace es generar esperas
        
 
+  }
+
+    private void OnTriggerEnter(Collider disparar)
+    {
+       
     }
 
-  
+
+    private void OnTriggerExit(Collider dejardedisparar)
+    {
+       
+    }
 
     // Update is called once per frame
     void Update()

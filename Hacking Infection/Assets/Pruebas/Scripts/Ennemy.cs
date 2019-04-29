@@ -50,12 +50,14 @@ public class Ennemy : MonoBehaviour
         yield return new WaitForSecondsRealtime(1.0f);
         if (!IsObstacule)
         {
-            Explode();
+            Explode(); //se hace el llamado del Scripti que hace explotar los enemigos
             //Destroy(gameObject);
         }
     }
 
 
+
+//Script para hacer explotar a los enemigos 
     public void Explode()
     {
         foreach (Transform t in transform)
@@ -76,5 +78,7 @@ public class Ennemy : MonoBehaviour
 
         }
     }
+
+
 
 }
