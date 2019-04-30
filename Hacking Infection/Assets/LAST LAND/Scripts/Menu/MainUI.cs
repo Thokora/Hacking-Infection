@@ -119,4 +119,10 @@ public class MainUI : MonoBehaviour {
 		PlayerPrefs.SetInt ("PositionOfSound", PositionOfSound);
 		RepeatSCh ();
 	}
+
+
+    public void CambioEscena()
+    {
+        SceneManager.LoadScene(2);
+    }
 }
