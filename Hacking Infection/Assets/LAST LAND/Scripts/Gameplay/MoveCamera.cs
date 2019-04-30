@@ -32,6 +32,7 @@ public class MoveCamera : MonoBehaviour {
 	public Text AddThisText;
 
     [Header("Fawer Changes")]
+    public bool isPlatform = false;
     public GameObject ctrlPlayer;
     Animator animCtrlPlayer;
 
@@ -74,7 +75,8 @@ public class MoveCamera : MonoBehaviour {
 
 
 	void FixedUpdate (){
-
+        if (!isPlatform)
+        { 
 //#if UNITY_STANDALONE
 
         if (Input.GetAxis("Horizontal") != 0)
@@ -178,6 +180,7 @@ public class MoveCamera : MonoBehaviour {
 
         // Joystick  //
 #endif
+        }
     }
 
 
