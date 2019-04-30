@@ -76,7 +76,7 @@ public class ForPlayer : MonoBehaviour
         {
             ButtonShield();
         }
-        if (Input.GetKeyDown(KeyCode.X)) //Propulsores
+        if (Input.GetKeyDown(KeyCode.UpArrow)) //Propulsores
         {
             ButtonSuction();
         }
