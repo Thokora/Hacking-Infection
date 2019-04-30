@@ -4,24 +4,55 @@ using UnityEngine;
 
 public class MovePlayer : MonoBehaviour
 {
+    float horizontalMove;
+    float VerticallMove;
+    [SerializeField, Range(10, 50)]
+    float speedFlicker;
+    [SerializeField, Range(1.0f, 9.8f)]
+    float gravity = 9.8f;
+    float fallVelocity;
 
-    public float velocidad;
-    private Rigidbody rb;
+    [SerializeField, Range(1f, 2f)] //cambiar valores
+    float jumpForce;
+
+    public GameObject player;
+    Vector3 gravityPlayer;
+    CharacterController CCplayer;
 
 
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        CCplayer = player.GetComponent<CharacterController>();
     }
 
     void Update()
     {
-        transform.Translate(Input.GetAxis("Horizontal") * velocidad * Time.deltaTime, 0, Input.GetAxis("Vertical") * velocidad * Time.deltaTime);
+ 
+        horizontalMove = Input.GetAxis("Horizontal");
+        //VerticalMove = Input.GetAxis("Vertical");
+        SetGravity();
+        Skills();
+        CCplayer.Move(new Vector3(0, fallVelocity, horizontalMove) * speedFlicker * Time.deltaTime);
     }
 
+    void Skills()
+    {
+        if (CCplayer.isGrounded && Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            fallVelocity = jumpForce;
+        }
 
-   
+    }
 
+    void SetGravity()
+    {
 
-
+        if (CCplayer.isGrounded)
+        {
+            fallVelocity = -gravity * Time.deltaTime;
+        }else
+        {
+            fallVelocity -= gravity * Time.deltaTime;
+        }
+    }
 }
