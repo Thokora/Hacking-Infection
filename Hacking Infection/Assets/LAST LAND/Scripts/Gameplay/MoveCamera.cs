@@ -33,9 +33,11 @@ public class MoveCamera : MonoBehaviour {
 
     [Header("Fawer Changes")]
     public bool isPlatform = false;
+    public bool bossAppear = false;
     public GameObject ctrlPlayer;
     Animator animCtrlPlayer;
-
+    bool backRot;
+    
     // Joystick  //
     // Joystick  //
 
@@ -77,26 +79,6 @@ public class MoveCamera : MonoBehaviour {
 	void FixedUpdate (){
         if (!isPlatform)
         { 
-//#if UNITY_STANDALONE
-
-        if (Input.GetAxis("Horizontal") != 0)
-        {
-            if (Input.GetKey(KeyCode.RightArrow))
-            {
-                RotateRight();
-            }
-
-            if (Input.GetKey(KeyCode.LeftArrow))
-            {
-                RotateLeft();
-            }
-        }else
-        {
-            RotateEnd();
-        }
-
-//#endif
-
         if (stayrotate == 0) {
 			if (currentAngle > 0.1f) {
 				stayrotate = 1;
@@ -159,9 +141,85 @@ public class MoveCamera : MonoBehaviour {
 			}
 		}
 
-		gameObject.transform.position = new Vector3 (tI_Player.position.x, HeightOfCam, tI_Player.position.z - DistCamZ);	
-	
-		tI_Player.Translate (0, 0, SpeedOfPlayer);
+		gameObject.transform.position = new Vector3 (tI_Player.position.x, HeightOfCam, tI_Player.position.z - DistCamZ);
+
+
+            //Linea agregada por fawer
+
+            //#if UNITY_STANDALONE
+
+            //#endif
+
+
+            if (bossAppear == true)
+            {
+                if (Input.GetAxis("Horizontal") != 0)
+                {
+                    if (Input.GetKey(KeyCode.RightArrow))
+                    {
+                        if(!backRot)
+                        {
+                            RotateRight();
+                        }else
+                        {
+                            RotateLeft();
+                        }
+                    }
+
+                    if (Input.GetKey(KeyCode.LeftArrow))
+                    {
+                        if (!backRot)
+                        {
+                            RotateLeft();
+                        }else
+                        {
+                            RotateRight();
+                        }
+                    }
+                }
+                else
+                {
+                    RotateEnd();
+                }
+
+                if (Input.GetKey(KeyCode.UpArrow))
+                {
+                    backRot = false;
+                    tI_Player.Translate(0, 0, SpeedOfPlayer);
+                }
+                else if (Input.GetKey(KeyCode.DownArrow))
+                {
+                    backRot = true;
+                    tI_Player.Translate(0, 0, -SpeedOfPlayer);
+                }
+                else
+                {
+                    tI_Player.Translate(0, 0, 0);
+                }
+                
+            }else
+            {
+                if (Input.GetAxis("Horizontal") != 0)
+                {
+                    if (Input.GetKey(KeyCode.RightArrow))
+                    {
+                        RotateRight();
+                    }
+
+                    if (Input.GetKey(KeyCode.LeftArrow))
+                    {
+                        RotateLeft();
+                    }
+                }
+                else
+                {
+                    RotateEnd();
+                }
+
+                tI_Player.Translate(0, 0, SpeedOfPlayer);
+            }
+
+            // Fin linea agregada por Fawer
 
 		DistanceBSteps += Mathf.Abs (tI_Player.position.z - i_PlayerSaved.z);
 		DistanceBSteps += Mathf.Abs (tI_Player.position.x - i_PlayerSaved.x);
