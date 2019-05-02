@@ -123,6 +123,6 @@ public class MainUI : MonoBehaviour {
 
     public void CambioEscena()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(1);
     }
 }

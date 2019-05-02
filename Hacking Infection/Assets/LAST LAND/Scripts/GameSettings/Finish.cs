@@ -1,19 +1,24 @@
-﻿using UnityEngine;
+﻿
+using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class Finish : MonoBehaviour {
 
-	private Image TableOfFinish;
-	private Text PAUSE;
-	public string NameOfSNext;
-	public string NameOfSMenu;
-	public AudioClip SounfOfFinish;
-	public string NameOfThisScene;
+    private Image TableOfFinish;
+    private Text PAUSE;
+    public string NameOfSNext;
+    public string NameOfSMenu;
+    public AudioClip SounfOfFinish;
+    public string NameOfThisScene;
 
-	private AudioSource ThisIndex;
-	public bool NoDListener;
+    private AudioSource ThisIndex;
+    public bool NoDListener;
+
+    [Header("Pasar a otra Escena")]
+    [Range(1, 5)] public float CambioEscena;
+
 
 	[Header("Other Objects")]
 	public Image LoadingIm;
@@ -106,7 +111,13 @@ public class Finish : MonoBehaviour {
 		SceneManager.LoadScene (NameOfSNext);
 	}
 
-	public void TapToMenu(){
+//Cambio EscenaProvicional
+   public void CambioEscenaPlatfor()
+    {
+        SceneManager.LoadScene(2);
+    }
+
+    public void TapToMenu(){
 		Time.timeScale = 1;
 		StartCoroutine ("ProcessToMenu");
 	}
@@ -144,5 +155,8 @@ public class Finish : MonoBehaviour {
 		}
 		SceneManager.LoadScene (NameOfSMenu);
 	}
+
+
+   
 
 }
