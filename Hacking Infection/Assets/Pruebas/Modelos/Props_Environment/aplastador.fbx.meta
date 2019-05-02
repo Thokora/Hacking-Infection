@@ -105,7 +105,22 @@ ModelImporter:
     2300000: pCylinder5
     3300000: pCylinder5
     4300000: pCylinder5
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: azulado
+    second: {fileID: 2100000, guid: 4a13e0be479597e48855eeaa143dec28, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: morado
+    second: {fileID: 2100000, guid: d847b88dd8771c048a7d17b21bbf4750, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: rosado
+    second: {fileID: 2100000, guid: c0bf35dbd6f6a05498b04118e854f860, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
