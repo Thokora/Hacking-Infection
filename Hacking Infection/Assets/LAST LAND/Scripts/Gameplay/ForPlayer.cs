@@ -37,6 +37,7 @@ public class ForPlayer : MonoBehaviour
     public GameObject flickerShield;
 
     public int counterObjects;
+    public Text ItemText;
 
 
     void Start()
@@ -109,6 +110,8 @@ public class ForPlayer : MonoBehaviour
         if (other.gameObject.tag == "Collectible")
         {
             counterObjects++;
+            ItemText.text = "Items: " + counterObjects;
+
             Destroy(other.gameObject);
         }
 
