@@ -179,5 +179,13 @@ public class BoosBehaviour : MonoBehaviour
         StartCoroutine(ShieldActived());
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Bullet")
+        {
+            ForPlayer.BulletImpactEnemy = true;
+            //colocar sistema de puntos, a los cuantos muere...
+        }
+    }
 
 }
