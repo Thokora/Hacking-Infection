@@ -36,8 +36,13 @@ public class ForPlayer : MonoBehaviour
 
     public GameObject flickerShield;
 
-    public int counterObjects;
+    int myScore = 0;
+    public Text ScoreText;
+
+    int counterObjects;
     public Text ItemText;
+
+    public static bool BulletImpactEnemy;
 
 
     void Start()
@@ -53,6 +58,7 @@ public class ForPlayer : MonoBehaviour
         animPropulsores = antiSuctionButton.GetComponent<Animator>();
         animPropulsores.SetBool("Propulsores", false);
         flickerShield.SetActive(false);
+        myScore = 0;
 
         StartCoroutine(FlickerIsDead());
     }
@@ -81,10 +87,21 @@ public class ForPlayer : MonoBehaviour
         {
             ButtonSuction();
         }
-
+        if (BulletImpactEnemy == true)
+        {
+            Debug.Log("entro la bala");
+            Score();
+        }
     }
 
 //#endif
+    void Score()
+    {
+        myScore++;
+        ScoreText.text = "Score: " + myScore;
+        BulletImpactEnemy = false;
+    }
+
     IEnumerator ResetHigh()
     {
         yield return new WaitForSecondsRealtime(0.1f);

@@ -27,7 +27,7 @@ public class Ennemy : MonoBehaviour
     {
         if (input.gameObject.tag == "Bullet")
         {
-
+            ForPlayer.BulletImpactEnemy = true;
             rb.useGravity = true;
             ShotCentre.esperar = true;
             Destroy(input.gameObject);
